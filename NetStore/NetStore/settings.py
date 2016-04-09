@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+TEMPLATE_PATH = os.path.join(BASE_DIR,'template')
+TEMPLATE_DIRS=[
+    TEMPLATE_PATH,
+]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -36,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'netstoreapp',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,8 +63,15 @@ WSGI_APPLICATION = 'NetStore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'NetStore',
+        'USER': 'root',
+        'PASSWORD': 'itcast',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -81,3 +93,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_PATH = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = (    
+             STATIC_PATH,
+    )
+
+LOGIN_URL = '/netstoreapp/login/'

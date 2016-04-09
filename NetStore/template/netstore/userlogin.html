@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+
+{% block head_block %}
+	<title>登陆 </title>
+	
+
+{% endblock head_block %}
+
+
+
+{% block body_block %}
+
+	<div class="jumbotron">
+	<br />	
+	<div class="row">
+	<div class="col-xs-6 col-xs-offset-4"><h3>{{ LogErr }}</h3></div>
+	</div>
+	
+	<form class="form-horizontal" id="login_form" method="post" action="/netstoreapp/login/">
+	{% csrf_token %}
+	<div class="row">
+	  <div class="form-group">
+	    <label for="inputusername1" class="col-xs-2 col-xs-offset-2 control-label">用户名:</label>
+	    <div class="col-xs-4">
+	      <input type="username" class="form-control col-xs-offset-0 " id="inputusername1" placeholder="username" name="FUsername">
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="form-group">	  
+	    <label for="inputPassword3" class="col-xs-2 col-xs-offset-2 control-label">密码   :</label>
+	    <div class="col-xs-4">
+	      <input type="password" class="form-control col-xs-offset-0" id="inputPassword3" placeholder="Password" name="FPassword">
+	    </div>
+	  </div>
+	  </div>
+
+	
+	<div class="row">
+	  <div class="form-group">
+	    <div class="col-xs-6 col-xs-offset-4">
+	      <div class="checkbox">
+	        <label>
+	          <input type="checkbox">记住我</label>
+	      </div>
+	    </div>
+	  </div>
+	  </div>
+
+
+	<div class="row">
+	  <div class="form-group">
+	    <div class="col-xs-offset-4 col-xs-3">
+	    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+	  <div class="btn-group" role="group">
+	    <button type="submit" class="btn btn-default">登陆</button> 
+	  </div>
+	  <div class="btn-group" role="group">
+	    <a href="/netstoreapp/register/?" ><button  type="button" class="btn btn-default" name="register">注册</button></a>
+	  </div>
+	  
+	</div>
+     
+	    </div>
+	  </div>
+	  </div>
+	 
+
+	</form>
+
+	</div>
+
+{% endblock body_block %}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+
+
+
+
+	<meta charset="utf-8">
+<!-- jquery配置-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src = "{% static "js/jquery.min.js" %}"></script>
+<!--bootstrapp配置-->
+	
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+        		
+      		
+
+	{% block head_block %}
+		<!--   head text -->
+	{% endblock head_block %}
+</head>
+<body style="background: gray;">
+
+<!-- dao hang lan -->
+
+	<nav class="navbar navbar-default  navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Brand</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+	        <li><a href="#">Link</a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">login</a></li>
+	            <li><a href="#">regiest</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	      <form class="navbar-form navbar-left" role="search">
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="Search">
+	        </div>
+	        <button type="submit" class="btn btn-default">搜索</button>
+	      </form>
+
+	      <ul class="nav navbar-nav navbar-right">
+<!--我的账户-->	      
+	        <li><a href="/netstoreapp/mydata/"><span class="glyphicon glyphicon-user" aria-hidden="true">{{ ISlogin }}</span></a></li>
+<!--购物车超链接-->	 
+	      <li><a href="/netstoreapp/cart/"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true">购物车</span></a></li>
+<!-- 回到主页 -->
+	       <li><a href="/netstoreapp/"><span class="glyphicon glyphicon-home" aria-hidden="true">主页</span></a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">账户管理<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="/netstoreapp/login/">用户登陆</a></li>
+	            <li><a href="/netstoreapp/register/">用户注册</a></li>
+	            <li><a href="/netstoreapp/chdata/">修改资料</a></li>
+	            <li><a href="/netstoreapp/chpwd/">修改密码</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="/netstoreapp/logout/">注销登陆</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	{% block body_block %}
+		<!--   body text -->
+	{% endblock body_block %}
+
+	<!--bootstrap-->
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    	<script  src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
