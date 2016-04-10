@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^classify/',views.classify,name='classify'),
     url(r'^add/',views.add,name='add'),
     url(r'^iframe/',views.iframe,name='iframe'),
+    url(r'^cart_add/',views.cart_add,name='cart_add'),
 )

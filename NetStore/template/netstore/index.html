@@ -10,7 +10,7 @@
     $(document).ready(function(){	
       $("#{{ Classify }}").click(function(){
 
-       $.get("/netstoreapp/iframe/",{'classify':'{{ Classify.name }}'}, function(ret){
+       $.get("/netstoreapp/iframe/",{'name':'{{ Classify.name }}'}, function(ret){
        	parent
 
             	$('#result').html();

@@ -1,6 +1,6 @@
 # coding:utf-8
 from django.shortcuts import render
-from netstoreapp.models import UserProfile,Classify,Commodity
+from netstoreapp.models import UserProfile,Classify,Commodity,Cart
 from django.contrib.auth.models import User
 from netstoreapp.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
@@ -74,11 +74,12 @@ def cart(request):
     '''购物车'''
     context_dict = {}
     ISlogin(request, context_dict)
-
-    print request.user
-    userprofile = UserProfile.objects.get(user=request.user)
-    print userprofile
-    print userprofile.cart
+    user = request.user
+    print user
+    cart = Cart.objects.get(user=user)
+    print cart
+    context_dict['commodity']=cart.Goods.all()
+    print context_dict['commodity']
 
     return render(request, 'netstore/cart.html', context_dict)
 
@@ -140,15 +141,15 @@ def user_logout(request):
     return HttpResponseRedirect('/netstoreapp/')
 
 def classify(request):
-	print request.GET.get('classify')
+	#print request.GET.get('classify')
 	return render(request,'netstore/index.html',{})
 
 def add(request):
 	context_dict={}
 
 	classify_list=Classify.objects.order_by('name')[:5]   	
-	print  request.GET.get('classify')
-	print type(request.GET.get('classify'))
+	#print  request.GET.get('classify')
+	#print type(request.GET.get('classify'))
 	return HttpResponseRedirect("/netstoreapp/iframe/")
 	for classify in classify_list:
 		if classify.name==request.GET.get('classify'):
@@ -156,18 +157,18 @@ def add(request):
 			break;
 	
     	
-	print context_dict
+	#print context_dict
 	return HttpResponse(context_dict)
 
 def iframe(request):
-	print "***888*******"
+	#print "***888*******"
 	context_dict={}
 	classify_list=Classify.objects.order_by('name')[:5]
 	context_dict['classify']=classify_list
 
 	clas = request.GET.get('classify')
-	print request.GET
-	print clas
+	#print request.GET
+	#print clas
 	if clas:
 		for classify in classify_list:
 			if classify.name==clas:
@@ -180,7 +181,35 @@ def iframe(request):
 		
 
 		
-	print context_dict
+	#print context_dict
 	return render(request,"netstore/iframe.html",context_dict)
 	
 
+@login_required
+def cart_add(request):
+    context_dict={}
+    ISlogin(request, context_dict)
+
+    user = request.user
+    print "*"
+    print user
+    print type(user)
+    #print request.GET.get('name')
+    commodity = Commodity.objects.get(name=request.GET.get('name'))
+    print "**"
+    print commodity
+    usercart = Cart.objects.filter(user = user)
+    print "***"
+    print usercart
+    if usercart:
+        print "**"
+        usercart[0].Goods.add(commodity)
+    else:
+        cart=Cart(user=user)
+        cart.save()
+        print "****"
+        cart.Goods.add(commodity)
+        print "****"
+        cart.save()
+    context_dict['addmsg']="add succ"
+    return HttpResponse(context_dict)

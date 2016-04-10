@@ -11,7 +11,27 @@
 
 
 {% block body_block %}
-	
-	
+	<br />
+	<br />
+	<div class="jumbotron">
+  	<div class="container">
+    	{% for commoditys in commodity %}
+	  <div class="col-xs-6 ">
+	     <div class="thumbnail">
+	      <a href="/netstoreapp/commodity/"></a>
+	       <div class='caption'>	   
+	        <a href="/netstoreapp/commodity/"><p>{{ commoditys }}</p></a>
+	        <p><a href="#" class="btn btn-primary" role="button">$: {{ commoditys.price }}</a><!-- <a tabindex="0" class="btn btn-primary" role="button" data-toggle="popover" data-trigger="focus" title="success" id='{{ commoditys.name }}' data-content="加入购物车成功">加入购物车</a>--></p>
 
+	       
+
+	     </div>
+	   </div>
+	  </div>
+	  {% endfor %}
+	  </div>
+	</div>
+
+	
+	
 {% endblock body_block %}

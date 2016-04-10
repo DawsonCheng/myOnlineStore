@@ -30,7 +30,14 @@ class UserProfile(models.Model):
 	user=models.OneToOneField(User)
 	phone=models.CharField(max_length=128,unique=True)
 	picture = models.ImageField(upload_to='profile_images',blank=True)
-	#cart = models.OneToOneField(Commodity)
+	
+
+	def __unicode__(self):
+		return self.user.username
+
+class Cart(models.Model):
+	user = models.ForeignKey(User,primary_key=True)
+	Goods = models.ManyToManyField(Commodity)
 
 	def __unicode__(self):
 		return self.user.username
